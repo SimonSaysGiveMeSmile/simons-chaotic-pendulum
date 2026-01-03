@@ -171,6 +171,37 @@ export default function Scene() {
           🏠
         </button>
       </div>
+
+      {/* Social Links Footer */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-6 z-10">
+        <a
+          href="https://github.com/SimonSaysGiveMeSmile/simons-chaotic-pendulum"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm font-medium"
+          title="GitHub Repository"
+        >
+          GitHub
+        </a>
+        <a
+          href="https://www.linkedin.com/in/simon-tian-1333a3156/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm font-medium"
+          title="LinkedIn Profile"
+        >
+          LinkedIn
+        </a>
+        <a
+          href="https://www.hisimon.pro/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm font-medium"
+          title="Personal Website"
+        >
+          Portfolio
+        </a>
+      </div>
     </div>
   );
 }
