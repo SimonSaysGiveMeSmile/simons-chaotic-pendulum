@@ -61,7 +61,7 @@ export default function Pendulum({ mode }: PendulumProps) {
       setOmega1(initialOmega1);
       setOmega2(0);
     }),
-  });
+  }, { collapsed: true });
 
   // Physics state for double pendulum (from MATLAB code)
   // State vector u = [theta1, theta2, omega1, omega2]
