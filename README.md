@@ -60,6 +60,33 @@ npm run build
 npm start
 ```
 
+## Deployment
+
+### Deploy to Vercel
+
+This project is ready for deployment on Vercel:
+
+1. **Push your code to GitHub/GitLab/Bitbucket**
+
+2. **Import your repository to Vercel**:
+   - Go to [vercel.com](https://vercel.com)
+   - Click "Add New Project"
+   - Import your repository
+   - Vercel will auto-detect Next.js settings
+
+3. **Deploy**:
+   - Vercel will automatically build and deploy your project
+   - No additional configuration needed - the project is optimized for Vercel
+
+**Note**: The build process will automatically:
+- Run `npm run build`
+- Optimize the production bundle
+- Deploy with optimal Next.js settings
+
+### Environment Variables
+
+No environment variables are required for this project.
+
 ## Project Structure
 
 ```

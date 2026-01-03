@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Disable server-side rendering for 3D components
+  // Optimize package imports for better bundle size
   experimental: {
     optimizePackageImports: ['@react-three/fiber', '@react-three/drei', '@react-three/rapier'],
   },
