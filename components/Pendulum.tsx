@@ -33,6 +33,8 @@ export default function Pendulum({ mode }: PendulumProps) {
     rod1Mass,
     rod2Mass,
     simulationSpeed,
+    rod1ZDisplacement,
+    rod2ZDisplacement,
   } = useControls('Pendulum Settings', {
     simulationSpeed: { value: 1.0, min: 0.1, max: 10, step: 0.1, label: '⏱️ Simulation Speed' },
     baseWidth: { value: 3, min: 1, max: 5, step: 0.1, label: 'Base Width' },
@@ -53,6 +55,8 @@ export default function Pendulum({ mode }: PendulumProps) {
     rod1MomentumBoost: { value: 1, min: 0, max: 5, step: 0.1, label: 'Rod 1 Momentum Boost' },
     rod1Mass: { value: 5, min: 0.1, max: 20, step: 0.1, label: '⚖️ Rod 1 Mass' },
     rod2Mass: { value: 5, min: 0.1, max: 20, step: 0.1, label: '⚖️ Rod 2 Mass' },
+    rod1ZDisplacement: { value: 0.08, min: -2, max: 2, step: 0.01, label: 'Rod 1 Z Displacement' },
+    rod2ZDisplacement: { value: 0.15, min: -2, max: 2, step: 0.01, label: 'Rod 2 Z Displacement' },
     Reset: button(() => {
       const theta1Rad = (initialTheta1Deg * Math.PI) / 180;
       const theta2Rad = (initialTheta2Deg * Math.PI) / 180;
@@ -346,7 +350,7 @@ export default function Pendulum({ mode }: PendulumProps) {
       // Rod center is at pivot + half rod length in the direction of theta1
       const rod1CenterX = pivotX + (0.5 * rod1Length) * x1;
       const rod1CenterY = pivotY + (0.5 * rod1Length) * y1;
-      rod1Ref.current.position.set(rod1CenterX, rod1CenterY, 0);
+      rod1Ref.current.position.set(rod1CenterX, rod1CenterY, rod1ZDisplacement);
       rod1Ref.current.rotation.z = newTheta1;
     }
 
@@ -369,7 +373,7 @@ export default function Pendulum({ mode }: PendulumProps) {
       const rod2CenterX = rod2PivotX + (0.5 * rod2Length) * x2;
       const rod2CenterY = rod2PivotY + (0.5 * rod2Length) * y2;
       
-      rod2Ref.current.position.set(rod2CenterX, rod2CenterY, 0);
+      rod2Ref.current.position.set(rod2CenterX, rod2CenterY, rod2ZDisplacement);
       rod2Ref.current.rotation.z = absoluteTheta2;
     }
   });

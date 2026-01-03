@@ -14,7 +14,9 @@ const Scene = dynamic(() => import('@/components/Scene'), {
 
 export default function Home() {
   return (
-    <main className="w-full h-screen">
+    <main className="w-full h-screen relative">
+      {/* Credit at the top */}
+      
       <Scene />
     </main>
   );

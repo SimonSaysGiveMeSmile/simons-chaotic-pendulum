@@ -5,6 +5,7 @@ import { OrbitControls, Environment, PerspectiveCamera } from '@react-three/drei
 import { Suspense, useState, useRef, useCallback, useEffect } from 'react';
 import { EffectComposer, Bloom, SSAO } from '@react-three/postprocessing';
 import Pendulum from './Pendulum';
+import { RefreshIcon, LockIcon, LeftArrowIcon, UpArrowIcon, HomeIcon } from './Icons';
 import * as THREE from 'three';
 
 type ViewMode = 'free' | 'positionFix';
@@ -110,7 +111,7 @@ export default function Scene() {
           <Environment preset="city" background={false} />
 
           {/* Post-processing Effects */}
-          <EffectComposer>
+          <EffectComposer enableNormalPass>
             <Bloom 
               intensity={0.4} 
               luminanceThreshold={0.8}
@@ -133,52 +134,60 @@ export default function Scene() {
         </Suspense>
       </Canvas>
 
-      {/* Custom circular buttons at the bottom */}
-      <div className="absolute bottom-[124px] left-1/2 transform -translate-x-1/2 flex gap-4 z-10">
+      {/* Custom circular buttons at the bottom - Apple Liquid Glass Style */}
+      <div className="absolute bottom-[180px] left-1/2 transform -translate-x-1/2 flex gap-6 z-10 items-center glass-container rounded-full px-4 py-3">
         {/* Mode Toggle Button */}
         <button
           onClick={() => setMode(mode === 'free' ? 'positionFix' : 'free')}
-          className="w-25 h-25 rounded-full bg-white/90 hover:bg-white shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center text-sm font-medium text-gray-700 hover:text-gray-900 border-2 border-gray-200 hover:border-gray-300"
+          className="glass-button w-14 h-14 rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer hover:scale-110 active:scale-95 text-white/90 hover:text-white"
           title={mode === 'free' ? 'Free Mode' : 'Position Fix Mode'}
+          aria-label={mode === 'free' ? 'Switch to Position Fix Mode' : 'Switch to Free Mode'}
         >
-          {mode === 'free' ? '🔄' : '🔒'}
+          {mode === 'free' ? (
+            <RefreshIcon size={22} className="icon-glow" />
+          ) : (
+            <LockIcon size={22} className="icon-glow" />
+          )}
         </button>
 
         {/* Side View Button */}
         <button
           onClick={() => applyCameraPreset('side')}
-          className="w-14 h-14 rounded-full bg-white/90 hover:bg-white shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center text-sm font-medium text-gray-700 hover:text-gray-900 border-2 border-gray-200 hover:border-gray-300"
+          className="glass-button w-14 h-14 rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer hover:scale-110 active:scale-95 text-white/90 hover:text-white"
           title="Side View"
+          aria-label="Switch to Side View"
         >
-          ⬅️
+          <LeftArrowIcon size={22} className="icon-glow" />
         </button>
 
         {/* Top View Button */}
         <button
           onClick={() => applyCameraPreset('top')}
-          className="w-14 h-14 rounded-full bg-white/90 hover:bg-white shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center text-sm font-medium text-gray-700 hover:text-gray-900 border-2 border-gray-200 hover:border-gray-300"
+          className="glass-button w-14 h-14 rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer hover:scale-110 active:scale-95 text-white/90 hover:text-white"
           title="Top View"
+          aria-label="Switch to Top View"
         >
-          ⬆️
+          <UpArrowIcon size={22} className="icon-glow" />
         </button>
 
         {/* Default View Button */}
         <button
           onClick={() => applyCameraPreset('default')}
-          className="w-14 h-14 rounded-full bg-white/90 hover:bg-white shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center text-sm font-medium text-gray-700 hover:text-gray-900 border-2 border-gray-200 hover:border-gray-300"
+          className="glass-button w-14 h-14 rounded-full transition-all duration-300 flex items-center justify-center cursor-pointer hover:scale-110 active:scale-95 text-white/90 hover:text-white"
           title="Default View"
+          aria-label="Switch to Default View"
         >
-          🏠
+          <HomeIcon size={22} className="icon-glow" />
         </button>
       </div>
 
-      {/* Social Links Footer */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-6 z-10">
+      {/* Social Links Footer - Apple Liquid Glass Style */}
+      <div className="absolute bottom-[116px] left-1/2 transform -translate-x-1/2 flex gap-5 z-10 items-center glass-container rounded-full px-6 py-3">
         <a
           href="https://github.com/SimonSaysGiveMeSmile/simons-chaotic-pendulum"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm font-medium"
+          className="glass-link px-5 py-2.5 rounded-full transition-all duration-300 text-sm font-semibold cursor-pointer whitespace-nowrap hover:scale-105 active:scale-95 text-white/90 hover:text-white"
           title="GitHub Repository"
         >
           GitHub
@@ -187,7 +196,7 @@ export default function Scene() {
           href="https://www.linkedin.com/in/simon-tian-1333a3156/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm font-medium"
+          className="glass-link px-5 py-2.5 rounded-full transition-all duration-300 text-sm font-semibold cursor-pointer whitespace-nowrap hover:scale-105 active:scale-95 text-white/90 hover:text-white"
           title="LinkedIn Profile"
         >
           LinkedIn
@@ -196,7 +205,7 @@ export default function Scene() {
           href="https://www.hisimon.pro/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-600 hover:text-gray-900 transition-colors duration-200 text-sm font-medium"
+          className="glass-link px-5 py-2.5 rounded-full transition-all duration-300 text-sm font-semibold cursor-pointer whitespace-nowrap hover:scale-105 active:scale-95 text-white/90 hover:text-white"
           title="Personal Website"
         >
           Portfolio
