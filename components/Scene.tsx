@@ -1,7 +1,7 @@
 'use client';
 
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment, PerspectiveCamera, Sky } from '@react-three/drei';
+import { OrbitControls, Environment, PerspectiveCamera } from '@react-three/drei';
 import { Suspense } from 'react';
 import { EffectComposer, Bloom, SSAO } from '@react-three/postprocessing';
 import Pendulum from './Pendulum';
@@ -16,16 +16,15 @@ export default function Scene() {
           alpha: false,
           powerPreference: 'high-performance',
         }}
+        style={{ background: '#e8e8e8' }}
       >
         <Suspense fallback={null}>
-          {/* Sky */}
-          <Sky sunPosition={[100, 20, 100]} />
 
-          {/* Lighting for metallic materials */}
-          <ambientLight intensity={0.3} />
+          {/* Lighting for metallic materials - even, soft lighting */}
+          <ambientLight intensity={0.6} />
           <directionalLight
             position={[5, 8, 5]}
-            intensity={1.5}
+            intensity={1.2}
             castShadow
             shadow-mapSize-width={2048}
             shadow-mapSize-height={2048}
@@ -34,14 +33,9 @@ export default function Scene() {
             shadow-camera-top={10}
             shadow-camera-bottom={-10}
           />
-          <pointLight position={[-5, 5, -5]} intensity={0.8} color="#ffffff" />
-          <pointLight position={[5, 3, 5]} intensity={0.5} color="#ffd700" />
-          <spotLight
-            position={[0, 10, 0]}
-            angle={0.5}
-            penumbra={1}
+          <directionalLight
+            position={[-5, 6, -5]}
             intensity={0.5}
-            castShadow
           />
 
           {/* Camera */}
